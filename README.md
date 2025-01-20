@@ -1,4 +1,4 @@
- MindEase - Mental Wellness Companion
+## <mark>MindEase - Mental Wellness Companion</mark>
 
 ## <mark>Brief Introduction</mark>
 MindEase is a mental wellness app focused on stress management and mindfulness. It offers real-time health tracking, including heart rate and stress levels. Key features include guided breathing exercises, a Panic Button for emergencies, and a calming Zen Garden. The app aims to promote overall well-being with simple, interactive tools. It integrates seamlessly with wearable devices for personalized wellness insights.
