@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood Tracker</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="mood-tracker">
+      <div class="header">
+        <h1>
+          <i data-lucide="calendar-check"></i>
+          Mood Tracker
+          <i data-lucide="sparkles" class="sparkles"></i>
+        </h1>
+        <p>How are you feeling right now?</p>
+      </div>
+
+      <div class="mood-grid">
+        <button class="mood-button" data-mood="excellent">
+          <i data-lucide="smile-plus"></i>
+          <span>Excellent</span>
+        </button>
+        <button class="mood-button" data-mood="good">
+          <i data-lucide="smile"></i>
+          <span>Good</span>
+        </button>
+        <button class="mood-button" data-mood="okay">
+          <i data-lucide="meh"></i>
+          <span>Okay</span>
+        </button>
+        <button class="mood-button" data-mood="bad">
+          <i data-lucide="frown"></i>
+          <span>Bad</span>
+        </button>
+        <button class="mood-button" data-mood="terrible">
+          <i data-lucide="frown"></i>
+          <span>Terrible</span>
+        </button>
+      </div>
+
+      <div id="mood-form" class="mood-form hidden">
+        <div class="mood-header">
+          <div class="mood-icon">
+            <i data-lucide="smile"></i>
+          </div>
+          <div class="mood-info">
+            <h3 class="mood-name">Good</h3>
+            <p class="mood-description">Things are going well</p>
+          </div>
+        </div>
+
+        <div class="note-section">
+          <label>
+            <i data-lucide="quote"></i>
+            Add a note (optional)
+          </label>
+          <textarea id="mood-note" placeholder="How are you feeling?"></textarea>
+        </div>
+
+        <div class="form-footer">
+          <p class="mood-message"></p>
+          <button id="save-mood" class="save-button">Save Mood</button>
+        </div>
+      </div>
+
+      <div id="mood-history" class="mood-history hidden">
+        <div class="history-header">
+          <h2>
+            <i data-lucide="history"></i>
+            Mood History
+          </h2>
+          <div id="streak-counter" class="streak hidden">
+            <span>0x Streak!</span>
+          </div>
+        </div>
+        <div id="history-entries" class="history-entries"></div>
+      </div>
+    </div>
+  </div>
+  <style>
+    :root {
+    --color-excellent: rgb(16, 185, 129);
+    --color-good: rgb(34, 197, 94);
+    --color-okay: rgb(234, 179, 8);
+    --color-bad: rgb(249, 115, 22);
+    --color-terrible: rgb(239, 68, 68);
+    
+    --gradient-excellent: linear-gradient(135deg, rgb(16, 185, 129), rgb(20, 184, 166));
+    --gradient-good: linear-gradient(135deg, rgb(34, 197, 94), rgb(16, 185, 129));
+    --gradient-okay: linear-gradient(135deg, rgb(234, 179, 8), rgb(245, 158, 11));
+    --gradient-bad: linear-gradient(135deg, rgb(249, 115, 22), rgb(239, 68, 68));
+    --gradient-terrible: linear-gradient(135deg, rgb(239, 68, 68), rgb(236, 72, 153));
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg,#235fac,#F5F3FF);
+    min-height: 100vh;
+    color: #1f2937;
+  }
+  
+  .container {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .mood-tracker {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .mood-tracker:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    margin-bottom: 2rem;
+  }
+  
+  .header h1 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #6366f1, #9333ea);
+    -webkit-background-clip: text;
+    color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .header p {
+    color: #4b5563;
+  }
+  
+  .sparkles {
+    color: #facc15;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  
+  .mood-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .mood-button {
+    background: #f9fafb;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .mood-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .mood-button[data-mood="excellent"] { color: var(--color-excellent); }
+  .mood-button[data-mood="good"] { color: var(--color-good); }
+  .mood-button[data-mood="okay"] { color: var(--color-okay); }
+  .mood-button[data-mood="bad"] { color: var(--color-bad); }
+  .mood-button[data-mood="terrible"] { color: var(--color-terrible); }
+  
+  .mood-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  .mood-button[data-mood="excellent"]::before { background: var(--gradient-excellent); }
+  .mood-button[data-mood="good"]::before { background: var(--gradient-good); }
+  .mood-button[data-mood="okay"]::before { background: var(--gradient-okay); }
+  .mood-button[data-mood="bad"]::before { background: var(--gradient-bad); }
+  .mood-button[data-mood="terrible"]::before { background: var(--gradient-terrible); }
+  
+  .mood-button:hover::before {
+    opacity: 1;
+  }
+  
+  .mood-button i,
+  .mood-button span {
+    position: relative;
+    z-index: 1;
+    transition: color 0.2s ease;
+  }
+  
+  .mood-button:hover i,
+  .mood-button:hover span {
+    color: white;
+  }
+  
+  .mood-form {
+    background: #f9fafb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .mood-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .mood-icon {
+    padding: 0.5rem;
+    border-radius: 9999px;
+    color: white;
+  }
+  
+  .note-section {
+    margin-bottom: 1rem;
+  }
+  
+  .note-section label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    resize: vertical;
+    min-height: 5rem;
+  }
+  
+  .form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .save-button {
+    background: linear-gradient(135deg, #6366f1, #9333ea);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .save-button:hover {
+    filter: brightness(1.1);
+  }
+  
+  .mood-history {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .history-header h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #6366f1, #9333ea);
+    -webkit-background-clip: text;
+    color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .streak {
+    background: linear-gradient(135deg, #6366f1, #9333ea);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    animation: bounce 1s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-0.25rem); }
+  }
+  
+  .history-entries {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .history-entry {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .history-entry:hover {
+    transform: scale(1.02);
+  }
+  
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .entry-mood {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .entry-icon {
+    padding: 0.5rem;
+    border-radius: 9999px;
+    color: white;
+  }
+  
+  .entry-note {
+    margin-left: 2.75rem;
+    margin-top: 0.25rem;
+    color: #4b5563;
+    font-size: 0.875rem;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-0.625rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  </style>
+  <script>
+    // Initialize Lucide icons
+lucide.createIcons();
+
+const MOODS = {
+  excellent: {
+    name: 'Excellent',
+    icon: 'smile-plus',
+    color: 'rgb(16, 185, 129)',
+    gradient: 'linear-gradient(135deg, rgb(16, 185, 129), rgb(20, 184, 166))',
+    description: 'On top of the world!',
+    message: 'Keep riding this wave of positivity!'
+  },
+  good: {
+    name: 'Good',
+    icon: 'smile',
+    color: 'rgb(34, 197, 94)',
+    gradient: 'linear-gradient(135deg, rgb(34, 197, 94), rgb(16, 185, 129))',
+    description: 'Things are going well',
+    message: "You're doing great, keep it up!"
+  },
+  okay: {
+    name: 'Okay',
+    icon: 'meh',
+    color: 'rgb(234, 179, 8)',
+    gradient: 'linear-gradient(135deg, rgb(234, 179, 8), rgb(245, 158, 11))',
+    description: 'Just another day',
+    message: 'Remember, every day is a fresh start'
+  },
+  bad: {
+    name: 'Bad',
+    icon: 'frown',
+    color: 'rgb(249, 115, 22)',
+    gradient: 'linear-gradient(135deg, rgb(249, 115, 22), rgb(239, 68, 68))',
+    description: 'Not feeling great',
+    message: 'This too shall pass. Take care of yourself'
+  },
+  terrible: {
+    name: 'Terrible',
+    icon: 'frown',
+    color: 'rgb(239, 68, 68)',
+    gradient: 'linear-gradient(135deg, rgb(239, 68, 68), rgb(236, 72, 153))',
+    description: 'Having a rough time',
+    message: "It's okay not to be okay. Consider talking to someone"
+  }
+};
+
+class MoodTracker {
+  constructor() {
+    this.selectedMood = null;
+    this.moodHistory = [];
+    this.initializeElements();
+    this.attachEventListeners();
+    this.loadMoodHistory();
+    this.updateHistoryView();
+  }
+
+  initializeElements() {
+    this.moodButtons = document.querySelectorAll('.mood-button');
+    this.moodForm = document.getElementById('mood-form');
+    this.moodNote = document.getElementById('mood-note');
+    this.saveMoodButton = document.getElementById('save-mood');
+    this.moodHistory = document.getElementById('mood-history');
+    this.historyEntries = document.getElementById('history-entries');
+    this.streakCounter = document.getElementById('streak-counter');
+  }
+
+  attachEventListeners() {
+    this.moodButtons.forEach(button => {
+      button.addEventListener('click', () => this.handleMoodSelect(button.dataset.mood));
+    });
+
+    this.saveMoodButton.addEventListener('click', () => this.handleSaveMood());
+  }
+
+  handleMoodSelect(moodKey) {
+    this.selectedMood = MOODS[moodKey];
+    this.updateMoodForm();
+  }
+
+  updateMoodForm() {
+    if (!this.selectedMood) {
+      this.moodForm.classList.add('hidden');
+      return;
+    }
+
+    this.moodForm.classList.remove('hidden');
+    
+    // Update mood icon
+    const iconElement = this.moodForm.querySelector('.mood-icon');
+    iconElement.style.background = this.selectedMood.gradient;
+    iconElement.innerHTML = `<i data-lucide="${this.selectedMood.icon}"></i>`;
+
+    // Update mood info
+    this.moodForm.querySelector('.mood-name').textContent = this.selectedMood.name;
+    this.moodForm.querySelector('.mood-description').textContent = this.selectedMood.description;
+    this.moodForm.querySelector('.mood-message').textContent = this.selectedMood.message;
+
+    // Reinitialize Lucide icons for the new icon
+    lucide.createIcons();
+  }
+
+  handleSaveMood() {
+    if (!this.selectedMood) return;
+
+    const moodEntry = {
+      mood: this.selectedMood,
+      note: this.moodNote.value.trim(),
+      timestamp: new Date()
+    };
+
+    this.moodHistory.unshift(moodEntry);
+    this.saveMoodHistory();
+    this.updateHistoryView();
+    
+    // Reset form
+    this.selectedMood = null;
+    this.moodNote.value = '';
+    this.moodForm.classList.add('hidden');
+  }
+
+  updateHistoryView() {
+    if (this.moodHistory.length === 0) {
+      document.getElementById('mood-history').classList.add('hidden');
+      return;
+    }
+
+    document.getElementById('mood-history').classList.remove('hidden');
+    this.historyEntries.innerHTML = '';
+
+    this.moodHistory.forEach(entry => {
+      const entryElement = this.createHistoryEntry(entry);
+      this.historyEntries.appendChild(entryElement);
+    });
+
+    this.updateStreakCounter();
+  }
+
+  createHistoryEntry(entry) {
+    const div = document.createElement('div');
+    div.className = 'history-entry';
+    div.style.background = `linear-gradient(to right bottom, ${entry.mood.color}10, ${entry.mood.color}20)`;
+    
+    div.innerHTML = `
+      <div class="entry-header">
+        <div class="entry-mood">
+          <div class="entry-icon" style="background: ${entry.mood.gradient}">
+            <i data-lucide="${entry.mood.icon}"></i>
+          </div>
+          <span class="font-medium">${entry.mood.name}</span>
+        </div>
+        <span class="text-sm text-gray-600">
+          ${entry.timestamp.toLocaleTimeString()}
+        </span>
+      </div>
+      ${entry.note ? `<p class="entry-note">"${entry.note}"</p>` : ''}
+    `;
+
+    lucide.createIcons({ parent: div });
+    return div;
+  }
+
+  updateStreakCounter() {
+    const streak = this.calculateStreak();
+    if (streak > 1) {
+      this.streakCounter.classList.remove('hidden');
+      this.streakCounter.querySelector('span').textContent = `${streak}x Streak!`;
+    } else {
+      this.streakCounter.classList.add('hidden');
+    }
+  }
+
+  calculateStreak() {
+    if (this.moodHistory.length === 0) return 0;
+    let streak = 1;
+    for (let i = 1; i < this.moodHistory.length; i++) {
+      if (this.moodHistory[i].mood.name === this.moodHistory[i - 1].mood.name) {
+        streak++;
+      } else {
+        break;
+      }
+    }
+    return streak;
+  }
+
+  saveMoodHistory() {
+    localStorage.setItem('moodHistory', JSON.stringify(this.moodHistory));
+  }
+
+  loadMoodHistory() {
+    const saved = localStorage.getItem('moodHistory');
+    if (saved) {
+      this.moodHistory = JSON.parse(saved).map(entry => ({
+        ...entry,
+        timestamp: new Date(entry.timestamp)
+      }));
+    }
+  }
+}
+
+// Initialize the mood tracker when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new MoodTracker();
+});
+  </script>
+
+
+</body>
+</html>
