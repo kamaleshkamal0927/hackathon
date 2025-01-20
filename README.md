@@ -1,7 +1,7 @@
  MindEase - Mental Wellness Companion
 
 ## Brief Introduction
-MindEase is a mental wellness companion designed to help users manage stress, track health, and improve mindfulness. It offers features like real-time health monitoring, guided breathing exercises, reminders, and an interactive Zen Garden to promote relaxation.
+MindEase is a mental wellness app focused on stress management and mindfulness. It offers real-time health tracking, including heart rate and stress levels. Key features include guided breathing exercises, a Panic Button for emergencies, and a calming Zen Garden. The app aims to promote overall well-being with simple, interactive tools. It integrates seamlessly with wearable devices for personalized wellness insights.
 
 ## Workflow Diagram
 ![workflow diagram](https://github.com/user-attachments/assets/ee75b23e-48b8-4b34-b603-fd39baf3dad4)
@@ -29,9 +29,10 @@ MindEase is a mental wellness companion designed to help users manage stress, tr
 
 ## <mark>Enhanced Features</mark>
 - **Panic Button**: The Panic Button provides instant contact with emergency contacts, mental health resources, and real-time stress monitoring, along with customizable alerts, geolocation sharing, wearable integration, and emergency services links for quick support.
-- **Smartwatch Integration**: Seamless tracking of blood pressure and heart rate through wearable devices.
-- **Mind Calming Games**: Interactive games designed to reduce anxiety and promote relaxation.
-
+  
+- **Smartwatch Integration**: MindEase integrates with wearables to monitor heart rate, blood pressure, and stress levels in real-time, providing data-driven insights, triggering alerts during stress peaks, and offering seamless Panic Button activation for immediate support.
+  
+- **Mind Calming Games**: MindEase features interactive, stress-relief games designed to promote relaxation, improve focus, and reduce anxiety through puzzles, memory challenges, and mindful activities, offering a fun and calming escape.
 ## Future Enhancements
 - **AI-Based Stress Analysis**: Uses ML models to assess stress levels.
 - **Voice-Guided Breathing**: Integrate speech-based meditation.
