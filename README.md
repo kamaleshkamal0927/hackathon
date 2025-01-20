@@ -27,8 +27,8 @@ MindEase is a mental wellness companion designed to help users manage stress, tr
 - Encourages consistent self-care through habit tracking
 - Minimalistic UI for an accessible and engaging experience
 
-## Enhanced Features
-- **Panic Button**: Immediate access to emergency contacts and resources during high-stress moments.
+## <mark>Enhanced Features</mark>
+- **Panic Button**: The Panic Button provides instant contact with emergency contacts, mental health resources, and real-time stress monitoring, along with customizable alerts, geolocation sharing, wearable integration, and emergency services links for quick support.
 - **Smartwatch Integration**: Seamless tracking of blood pressure and heart rate through wearable devices.
 - **Mind Calming Games**: Interactive games designed to reduce anxiety and promote relaxation.
 
