@@ -10,7 +10,7 @@ MindEase is a mental wellness companion designed to help users manage stress, tr
 *(Use tools like Lucidchart, Draw.io, or Canva to design this diagram.)*
 
 ## Concept Map
-![Concept Map](path/to/concept_map.png)
+![flow chart](https://github.com/user-attachments/assets/7fb9ae9d-c895-4bec-af5a-f518be578db3)
 *(Create a concept map using Miro, Canva, or Figma.)*
 
 ## Tech Stack
