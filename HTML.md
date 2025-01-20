@@ -29,7 +29,6 @@
         </div>
       </div>
     </header>
-
     <!-- Main Content -->
     <main>
       <div class="dashboard">
