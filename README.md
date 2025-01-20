@@ -27,7 +27,7 @@ MindEase is a mental wellness app focused on stress management and mindfulness. 
 - Minimalistic UI for an accessible and engaging experience
 
 ## <mark>Enhanced Features</mark>
-- **Panic Button**: The Panic Button provides instant contact with emergency contacts, mental health resources, and real-time stress monitoring, along with customizable alerts, geolocation sharing, wearable integration, and emergency services links for quick support.
+- <mark>**Panic Button**</mark>: The Panic Button provides instant contact with emergency contacts, mental health resources, and real-time stress monitoring, along with customizable alerts, geolocation sharing, wearable integration, and emergency services links for quick support.
 - **Smartwatch Integration**:MindEase integrates with wearables to monitor heart rate, blood pressure, and stress levels in real-time, providing data-driven insights, triggering alerts during stress peaks, and offering seamless Panic Button activation for immediate support.
 - **Mind Calming Games**: MindEase features interactive, stress-relief games designed to promote relaxation, improve focus, and reduce anxiety through puzzles, memory challenges, and mindful activities, offering a fun and calming escape.
 
