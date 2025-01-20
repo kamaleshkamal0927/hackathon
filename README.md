@@ -4,8 +4,8 @@
 MindEase is a mental wellness companion designed to help users manage stress, track health, and improve mindfulness. It offers features like real-time health monitoring, guided breathing exercises, reminders, and an interactive Zen Garden to promote relaxation.
 
 ## Workflow Diagram
-![Workflow Diagram](path/to/workflow_diagram.png)
-*(Use tools like Lucidchart, Draw.io, or Canva to design this diagram.)*
+![workflow diagram](https://github.com/user-attachments/assets/ee75b23e-48b8-4b34-b603-fd39baf3dad4)
+
 
 ## Concept Map
 ![flow chart](https://github.com/user-attachments/assets/7fb9ae9d-c895-4bec-af5a-f518be578db3)
