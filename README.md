@@ -1,28 +1,28 @@
  MindEase - Mental Wellness Companion
 
-## Brief Introduction
+## <mark>Brief Introduction</mark>
 MindEase is a mental wellness app focused on stress management and mindfulness. It offers real-time health tracking, including heart rate and stress levels. Key features include guided breathing exercises, a Panic Button for emergencies, and a calming Zen Garden. The app aims to promote overall well-being with simple, interactive tools. It integrates seamlessly with wearable devices for personalized wellness insights.
 
-## Workflow Diagram
+## <mark>Workflow Diagram</mark>
 ![workflow diagram](https://github.com/user-attachments/assets/ee75b23e-48b8-4b34-b603-fd39baf3dad4)
 
 
-## Concept Map
+## <mark>Concept Map</mark>
 ![flow chart](https://github.com/user-attachments/assets/7fb9ae9d-c895-4bec-af5a-f518be578db3)
 *(Create a concept map using Miro, Canva, or Figma.)*
 
-## Tech Stack
+## <mark>Tech Stack</mark>
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend**: Firebase (Authentication, Database)
 - **AI Integration**: Dialogflow (for chatbot interactions, if implemented)
 - **Hosting**: Firebase Hosting / Vercel / Netlify
 
-## Novelty
+## <mark>Novelty</mark>
 - A beginner-friendly yet effective mental wellness app
 - Combines real-time health tracking with interactive relaxation tools
 - Future enhancements could include AI-powered mood analysis
 
-## Solution
+## <mark>Solution</mark>
 - Provides a calm & structured approach to mental well-being
 - Encourages consistent self-care through habit tracking
 - Minimalistic UI for an accessible and engaging experience
@@ -38,7 +38,7 @@ MindEase is a mental wellness app focused on stress management and mindfulness. 
 - **Voice-Guided Breathing**: Integrate speech-based meditation.
 - **Community Support**: A chat/forum feature for mental wellness discussions.
 
-## Installation
+## <mark>Installation</mark>
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/mindease.git
