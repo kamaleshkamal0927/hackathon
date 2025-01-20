@@ -4,12 +4,11 @@
 MindEase is a mental wellness app focused on stress management and mindfulness. It offers real-time health tracking, including heart rate and stress levels. Key features include guided breathing exercises, a Panic Button for emergencies, and a calming Zen Garden. The app aims to promote overall well-being with simple, interactive tools. It integrates seamlessly with wearable devices for personalized wellness insights.
 
 ## Workflow Diagram
-![Workflow Diagram](path/to/workflow_diagram.png)
-*(Use tools like Lucidchart, Draw.io, or Canva to design this diagram.)*
+**![workflow diagram](https://github.com/user-attachments/assets/d13415f7-292d-498e-a189-c7f6998365c2)**
 
 ## Concept Map
-![Concept Map](path/to/concept_map.png)
-*(Create a concept map using Miro, Canva, or Figma.)*
+![flow chart](https://github.com/user-attachments/assets/962ab38e-4a79-412d-b821-ab60ac1afff4)
+
 
 ## Tech Stack
 - **Frontend**: HTML, CSS, JavaScript
@@ -42,3 +41,9 @@ MindEase is a mental wellness app focused on stress management and mindfulness. 
    
 bash
    git clone https://github.com/yourusername/mindease.git
+
+![WhatsApp Image 2025-01-20 at 21 33 52_7400152a](https://github.com/user-attachments/assets/a6e6703b-3acb-488c-b186-90a2b3e92f2b)
+
+![WhatsApp Image 2025-01-20 at 21 33 52_b067b297](https://github.com/user-attachments/assets/8ede1c28-e6d8-4cf4-87f4-0d2024d41ae0)
+
+![WhatsApp Image 2025-01-20 at 21 33 53_54e13477](https://github.com/user-attachments/assets/a52a87a9-7c8c-4420-a9fa-5541c49dde0c)
